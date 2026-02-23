@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 
 import { UsersService } from '../users/users.service';
 
@@ -16,17 +16,17 @@ export class AuthController {
     return this.usersService.create({ email, password });
   }
 
-  @Post('update')
+  @Put('update')
   async update(@Body() { id, email, password }: UpdateDto) {
     return this.usersService.update({ id, email, password });
   }
 
-  @Post('delete')
+  @Delete('delete')
   async delete(@Body() { id, password }: DeleteDto) {
     return this.usersService.delete({ id, password });
   }
 
-  @Post('login')
+  @Get('login')
   async login(@Body() { email, password }: LoginDto) {
     return this.usersService.login({ email, password });
   }

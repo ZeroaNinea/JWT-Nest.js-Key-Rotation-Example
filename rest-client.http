@@ -1,19 +1,39 @@
-# Get Hello World
-
+### Get Hello World
 GET http://localhost:3000
 
-# Create an Account
-
+### Create an Account
 POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
 {
-  "email": "sill.user@email.com",
-  "password": "secret_\>:3"
+  "email": "silly.user@email.com",
+  "password": "secret_\\>:3"
 }
 
-# Login as User
+### Login as User
+GET http://localhost:3000/auth/login
+Content-Type: application/json
 
-POST http://localhost:3000/auth/login
 {
-  "email": "sill.user@email.com",
-  "password": "secret_\>:3"
+  "email": "silly.user@email.com",
+  "password": "secret_\\>:3"
+}
+
+### Update User
+PUT http://localhost:3000/auth/update
+Content-Type: application/json
+
+{
+  "id": "2b30c867-77cf-4957-8e33-ae9d894d3061",
+  "email": "silly.user@email.com",
+  "password": "secret_\\>:3"
+}
+
+### Delete User
+DELETE http://localhost:3000/auth/delete
+Content-Type: application/json
+
+{
+  "id": "2b30c867-77cf-4957-8e33-ae9d894d3061",
+  "password": "secret_\\>:3"
 }
