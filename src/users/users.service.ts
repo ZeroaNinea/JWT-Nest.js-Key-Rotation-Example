@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 
 import { PrismaService } from '../prisma/prisma.service';
+
 import { SignupDto } from '../auth/dto/signup.dto';
+import { UpdateDto } from '../auth/dto/update.dto';
+import { DeleteDto } from '../auth/dto/delete.dto';
 
 @Injectable()
 export class UsersService {
@@ -20,7 +23,7 @@ export class UsersService {
     });
   }
 
-  async update(id: string, email: string, password: string) {
+  async update({ id, email, password }: UpdateDto) {
     return this.prisma.user.update({
       where: {
         id,
@@ -32,7 +35,7 @@ export class UsersService {
     });
   }
 
-  async delete(id: string, password: string) {
+  async delete({ id, password }: DeleteDto) {
     return this.prisma.user.delete({
       where: {
         id,
