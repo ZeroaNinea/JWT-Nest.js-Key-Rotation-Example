@@ -1,3 +1,11 @@
-### Get Hello World
+# Get Hello World
 
 GET http://localhost:3000
+
+# Create an Account
+
+POST http://localhost:3000/users
+{
+  "email": "sill.user@email.com",
+  "password": "secret_\>:3"
+}

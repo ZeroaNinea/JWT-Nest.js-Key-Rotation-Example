@@ -1,10 +1,11 @@
 import { Body, Controller, Post } from '@nestjs/common';
 
+import { UsersService } from '../users/users.service';
+
 import { SignupDto } from './dto/signup.dto';
 import { UpdateDto } from './dto/update.dto';
 import { DeleteDto } from './dto/delete.dto';
-
-import { UsersService } from '../users/users.service';
+import { LoginDto } from './dto/login.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -23,5 +24,10 @@ export class AuthController {
   @Post('delete')
   async delete(@Body() { id, password }: DeleteDto) {
     return this.usersService.delete({ id, password });
+  }
+
+  @Post('login')
+  async login(@Body() { email, password }: LoginDto) {
+    return this.usersService.login({ email, password });
   }
 }

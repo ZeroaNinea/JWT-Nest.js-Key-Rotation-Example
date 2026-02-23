@@ -5,6 +5,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { SignupDto } from '../auth/dto/signup.dto';
 import { UpdateDto } from '../auth/dto/update.dto';
 import { DeleteDto } from '../auth/dto/delete.dto';
+import { LoginDto } from '../auth/dto/login.dto';
 
 @Injectable()
 export class UsersService {
@@ -39,6 +40,15 @@ export class UsersService {
     return this.prisma.user.delete({
       where: {
         id,
+        password,
+      },
+    });
+  }
+
+  async login({ email, password }: LoginDto) {
+    return this.prisma.user.findUnique({
+      where: {
+        email,
         password,
       },
     });
