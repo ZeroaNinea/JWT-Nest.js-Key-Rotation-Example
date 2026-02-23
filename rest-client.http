@@ -24,7 +24,7 @@ PUT http://localhost:3000/auth/update
 Content-Type: application/json
 
 {
-  "id": "2b30c867-77cf-4957-8e33-ae9d894d3061",
+  "id": "c0f77128-c5e3-423e-978b-45b53f2676e6",
   "email": "silly.user@email.com",
   "password": "secret_\\>:3"
 }
@@ -34,6 +34,6 @@ DELETE http://localhost:3000/auth/delete
 Content-Type: application/json
 
 {
-  "id": "2b30c867-77cf-4957-8e33-ae9d894d3061",
+  "id": "c0f77128-c5e3-423e-978b-45b53f2676e6",
   "password": "secret_\\>:3"
 }
