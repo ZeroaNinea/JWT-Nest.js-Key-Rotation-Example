@@ -18,4 +18,25 @@ export class UsersService {
       },
     });
   }
+
+  async update(id: string, email: string, password: string) {
+    return this.prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        email,
+        password,
+      },
+    });
+  }
+
+  async delete(id: string, password: string) {
+    return this.prisma.user.delete({
+      where: {
+        id,
+        password,
+      },
+    });
+  }
 }
