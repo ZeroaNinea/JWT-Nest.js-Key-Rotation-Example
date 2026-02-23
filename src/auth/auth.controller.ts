@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Post, Put } from '@nestjs/common';
 
 import { UsersService } from '../users/users.service';
+import { AuthService } from './auth.service';
 
 import { SignupDto } from './dto/signup.dto';
 import { UpdateDto } from './dto/update.dto';
@@ -9,7 +10,10 @@ import { LoginDto } from './dto/login.dto';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private authService: AuthService,
+  ) {}
 
   @Post('signup')
   async signup(@Body() { email, password }: SignupDto) {
@@ -28,6 +32,6 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() { email, password }: LoginDto) {
-    return this.usersService.login({ email, password });
+    return this.authService.login({ email, password });
   }
 }

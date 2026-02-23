@@ -71,18 +71,28 @@ export class UsersService {
     });
   }
 
-  async login({ email, password }: LoginDto) {
-    const user = await this.findByEmail(email);
+  // async login({ email, password }: LoginDto) {
+  //   const user = await this.findByEmail(email);
 
-    if (!user) {
-      throw new NotFoundException(' X_X User not found.');
-    }
+  //   if (!user) {
+  //     throw new NotFoundException(' X_X User not found.');
+  //   }
+
+  //   const isValid = await bcrypt.compare(password, user.password);
+
+  //   if (!isValid) {
+  //     throw new UnauthorizedException(' X_X Invalid credentials.');
+  //   }
+
+  //   return user;
+  // }
+
+  async validateUser({ email, password }: LoginDto) {
+    const user = await this.findByEmail(email);
+    if (!user) return null;
 
     const isValid = await bcrypt.compare(password, user.password);
-
-    if (!isValid) {
-      throw new UnauthorizedException(' X_X Invalid credentials.');
-    }
+    if (!isValid) return null;
 
     return user;
   }
