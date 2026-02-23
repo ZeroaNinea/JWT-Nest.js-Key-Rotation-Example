@@ -6,7 +6,5 @@ async function bootstrap() {
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap()
-  .then(() =>
-    console.log(` 🚀 Server started on port ${process.env.PORT ?? 3000}...`),
-  )
-  .catch(console.error);
+  .then(() => console.log(` 🚀 Server runs on port ${process.env.PORT}`))
+  .catch((err) => console.log(err));
