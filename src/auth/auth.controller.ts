@@ -9,6 +9,6 @@ export class AuthController {
 
   @Post('signup')
   async signup(@Body() { email, password }: SignupDto) {
-    return this.usersService.create(email, password);
+    return this.usersService.create({ email, password });
   }
 }
