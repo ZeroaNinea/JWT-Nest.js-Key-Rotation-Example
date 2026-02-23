@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Post, Put } from '@nestjs/common';
 
 import { UsersService } from '../users/users.service';
 
@@ -26,7 +26,7 @@ export class AuthController {
     return this.usersService.delete({ id, password });
   }
 
-  @Get('login')
+  @Post('login')
   async login(@Body() { email, password }: LoginDto) {
     return this.usersService.login({ email, password });
   }
