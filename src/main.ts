@@ -2,9 +2,20 @@ import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 
 import { AppModule } from './app.module';
+import { KeyRotationService } from './auth/key-rotation.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // Rotate keys every 24 hours.
+  const keyRotationService = app.get(KeyRotationService);
+  keyRotationService.rotateKeys();
+  setInterval(
+    () => {
+      keyRotationService.rotateKeys();
+    },
+    24 * 60 * 60 * 1000,
+  );
 
   const configService = app.get(ConfigService);
 
