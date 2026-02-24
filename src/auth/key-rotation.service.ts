@@ -1,10 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 
 @Injectable()
-export class KeyRotationService {
+export class KeyRotationService implements OnModuleInit {
+  onModuleInit() {
+    this.rotateKeys();
+  }
+
   rotateKeys() {
     const keysDir = path.join(__dirname, '../../keys');
     const keyMapPath = path.join(keysDir, 'key-map.json');
