@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, OnModuleInit } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
 import { AppController } from './app.controller';
@@ -15,4 +15,10 @@ import { KeyRotationService } from './auth/key-rotation.service';
   controllers: [AppController],
   providers: [AppService, PrismaService, KeyStoreService, KeyRotationService],
 })
-export class AppModule {}
+export class AppModule implements OnModuleInit {
+  constructor(private keyRotationService: KeyRotationService) {}
+
+  onModuleInit() {
+    this.keyRotationService.rotateKeys();
+  }
+}

@@ -9,6 +9,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { AuthService } from './auth.service';
 import { KeyStoreService } from './key-store.service';
 import { JwtStrategy } from './jwt.strategy';
+import { KeyRotationService } from './key-rotation.service';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { JwtStrategy } from './jwt.strategy';
   ],
   controllers: [AuthController],
   providers: [
+    KeyRotationService,
     UsersService,
     PrismaService,
     AuthService,
