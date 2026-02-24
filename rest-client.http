@@ -19,6 +19,14 @@ Content-Type: application/json
   "password": "secret_\\>:3"
 }
 
+### Refresh Token
+POST http://localhost:3000/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "5eb6e10b02f9a9a03049657d88c317a3dc83c78f05e670b1b7b745e33c8de1c8f56ec61b5a7064599b26ea52d6ddee843c32d54bee1a953849be1cc288043246"
+}
+
 ### Update User
 PUT http://localhost:3000/auth/update
 Content-Type: application/json
