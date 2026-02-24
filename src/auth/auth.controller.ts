@@ -31,11 +31,13 @@ export class AuthController {
   }
 
   @Put('update')
+  @UseGuards(AuthGuard('jwt'))
   async update(@Body() { id, email, password }: UpdateDto) {
     return this.usersService.update({ id, email, password });
   }
 
   @Delete('delete')
+  @UseGuards(AuthGuard('jwt'))
   async delete(@Body() { id, password }: DeleteDto) {
     return this.usersService.delete({ id, password });
   }
