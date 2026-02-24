@@ -8,6 +8,7 @@ import {
   UseGuards,
   Request,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
 import { UsersService } from '../users/users.service';
 import { AuthService } from './auth.service';
@@ -16,7 +17,6 @@ import { SignupDto } from './dto/signup.dto';
 import { UpdateDto } from './dto/update.dto';
 import { DeleteDto } from './dto/delete.dto';
 import { LoginDto } from './dto/login.dto';
-import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {
@@ -45,8 +45,8 @@ export class AuthController {
     return this.authService.login({ email, password });
   }
 
-  @UseGuards(AuthGuard('jwt'))
   @Get('profile')
+  @UseGuards(AuthGuard('jwt'))
   getProfile(
     @Request()
     req: {

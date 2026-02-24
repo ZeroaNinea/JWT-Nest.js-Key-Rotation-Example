@@ -37,3 +37,7 @@ Content-Type: application/json
   "id": "c0f77128-c5e3-423e-978b-45b53f2676e6",
   "password": "secret_\\>:3"
 }
+
+### Get Profile
+GET http://localhost:3000/auth/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4OTM1MTc4OS1hYzQ5LTQyNjMtOWJmZi0xOGFjOWY5OGRhZTkiLCJlbWFpbCI6InNpbGx5LnVzZXJAZW1haWwuY29tIiwiaWF0IjoxNzcxODkwNjEwLCJleHAiOjE3NzE4OTE1MTB9.wQpC8ZO222LlDbp-45VDT-kEeuuHHHGt69J504D4zSo
