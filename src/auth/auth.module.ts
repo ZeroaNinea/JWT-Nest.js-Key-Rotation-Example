@@ -12,6 +12,16 @@ import { JwtStrategy } from './jwt.strategy';
 
 @Module({
   imports: [
+    // JwtModule.registerAsync({
+    //   inject: [KeyStoreService],
+    //   useFactory(keyStore: KeyStoreService) {
+    //     return {
+    //       // secret: configService.get('JWT_SECRET'),
+    //       secret: keyStore.getCurrentPrivateKey().privateKey,
+    //       signOptions: { expiresIn: '15m' },
+    //     };
+    //   },
+    // }),
     JwtModule.register({}),
     ConfigModule.forRoot({
       isGlobal: true,
