@@ -108,3 +108,41 @@ So:
 - Else -> skip.
 
 This prevents unnecessary key generation.
+
+### 3. Key Generation
+
+When rotation happenes:
+
+```ts
+crypto.generateKeyPairSync('rsa', {
+  modulusLength: 2048,
+```
+
+The script generates:
+
+- 2048-bit RSA key pair;
+- Public key in `spki` format;
+- Private key in `pkcs8` format
+- Both stored as PEM.
+
+This is production-grade cryptographic format.
+
+### 4. Key Retention Policy
+
+This is the most important part:
+
+```ts
+while (sorted.length > 3) {
+```
+
+The script keeps only the three newest keys. It removes the keys from `keymap.json`, then the `.private.pem` and `.public.pem` files.
+
+## Token Validity Window
+
+A token remains valid only if its `kid` is among the 3 most recent keys. Since rotation is daily the appliaction allows ~3 days of backward token validity.
+
+After that the public key is deleted; Verification fails; Token becomes invalid.
+
+This is intentional automatic expiration beyond JWT `exp`.
+
+That's a strong lifecycle control mechanism.
