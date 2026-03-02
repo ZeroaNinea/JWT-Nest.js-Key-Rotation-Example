@@ -57,3 +57,54 @@ The `key-map.json` file tracks available keys:
 If the public key exists, the token is valid — even if it was signed with an older key.
 
 This enables backward compatibility after rotation.
+
+## 🔄 How Your Key Rotation Works
+
+### 1. Rotation Trigger Logic
+
+There is used a time-based rotation strategy:
+
+```ts
+const rotationPeriodMs = 24 * 60 * 60 * 1000; // 1 day.
+```
+
+So rotation is scheduled every 24 hours based on the last `kid` date.
+
+The code extracts the latest `kid`:
+
+```ts
+const existingKids = Object.keys(keyMap).sort();
+const latestKid = existingKids.at(-1);
+```
+
+Because the `kid` format is:
+
+```ts
+const newKid = now.toISOString().split('T')[0];
+```
+
+Example:
+
+```plaintext
+2026-02-23
+2026-02-24
+```
+
+ISO date strings sort lexicographically in chronological order.
+
+### 2. Rotation Decision
+
+If a previous key exists:
+
+```ts
+const lastDate = new Date(latestKid);
+const nextRotationDate = new Date(lastDate.getTime() + rotationPeriodMs);
+shouldRotate = new Date() >= nextRotationDate;
+```
+
+So:
+
+- If today >= last rotation + 1 day -> rotate.
+- Else -> skip.
+
+This prevents unnecessary key generation.
