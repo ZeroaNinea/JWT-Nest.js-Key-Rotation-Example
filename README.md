@@ -163,10 +163,10 @@ For real production environments:
 
 This implementation demonstrates:
 
-✅ Secure RS256 authentication
-✅ Automatic daily key rotation
-✅ Backward-compatible token verification
-✅ Controlled 3-day cryptographic validity window
-✅ Clean and deterministic key management
+1. Secure RS256 authentication
+2. Automatic daily key rotation
+3. Backward-compatible token verification
+4. Controlled 3-day cryptographic validity window
+5. Clean and deterministic key management
 
 It provides a practical example of implementing secure, production-oriented JWT key rotation in Nest.js.
